@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Contact - Personal Website">
+    <title>Contact</title>
+    <link rel="stylesheet" href="styles.contac.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Contact Me</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Get in Touch</h2>
+            <p>If you have any questions or just want to say hi, feel free to reach out!</p>
+            <ul>
+                <li>Email: <a href="mailto:zyaoyc@gmail.com">zyaoyc@gmail.com</a></li>
+                <li>Phone: </li>
+                <li>LinkedIn: <a href="https:/www.linkedin.com/in/meczyyc" target="_blank">My LinkedIn</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Contact Form</h2>
+            <form action="submit_form.php" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 CLMatt. All rights reserved.</p>
+    </footer>
 </body>
 </html>
