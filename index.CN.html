@@ -63,6 +63,22 @@
             text-align: end;
             transform: translate(100px,1000px);
         }
+
+        /* Ensure consistent alignment for flags and text */
+        .droplist li a {
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Vertically align flag and text */
+            justify-content: start; /* Align items to the left */
+            padding: 5px 10px; /* Add padding for spacing */
+            color: #fff;
+        }
+
+        .droplist li a .flag {
+            display: inline-block;
+            width: 20px; /* Set a fixed width for the flag */
+            text-align: center; /* Center the emoji within the width */
+            margin-right: 10px; /* Add spacing between the flag and text */
+        }
     </style>
 </head>
 <body>
@@ -78,13 +94,9 @@
             <li class="btli"><a href="#">联系我</a></li>
             <li class="btli"><a href="lang.html">其他语言</a>
                 <ul class="droplist">
-                    <li><a href="index.html">English</a></li>
-                </ul>
-                <ul class="droplist">
-                    <li><a href="index.DE.html">🇩🇪 Deutsch</a></li>
-                </ul>
-                <ul class="droplist">
-                    <li><a href="index.ES.html">🇪🇸 Español</a></li>
+                    <li><a href="index.html"><span class="flag">🇺🇸</span> English</a></li>
+                    <li><a href="index.DE.html"><span class="flag">🇩🇪</span> Deutsch</a></li>
+                    <li><a href="index.ES.html"><span class="flag">🇪🇸</span> Español</a></li>
                 </ul>
             </li>
         </ul>
