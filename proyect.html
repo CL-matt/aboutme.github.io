@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <h1>My 3D Models</h1>
+        <h1>My Proyect</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -27,10 +27,26 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <h3>Machine</h3>
-                        <model-viewer src="model/test1.glb" alt="3D model of a machine" auto-rotate camera-controls style="width: 100%; height: 300px; background-color: #f0f0f0;"></model-viewer>
-                        <p>A brief description of the 3D model goes here.</p>
+                        <a href="https://skfb.ly/pwoCK" target="_blank">
+                            <img src="./img/MacNum.png" alt="Machine" class="carousel-image">
+                        </a>
                     </div>
-                
+                    <div class="carousel-item">
+                        <h3>Robot</h3>
+                        <a href="https://example.com/robot" target="_blank">
+                            <img src="images/robot.jpg" alt="Robot" class="carousel-image">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <h3>Car</h3>
+                        <a href="https://example.com/car" target="_blank">
+                            <img src="images/car.jpg" alt="Car" class="carousel-image">
+                        </a>
+                    </div>
+                </div>
+                <!-- Add navigation buttons -->
+                <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
+                <button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
             </div>
         </section>
     </main>
@@ -50,15 +66,13 @@
         }
 
         function nextSlide() {
-            stopAutoSwitch(); // Stop the auto-switch timer
+            resetAutoSwitch(); // Reset the auto-switch timer
             showSlide(currentIndex + 1); // Move to the next slide
-            startAutoSwitch(); // Restart the auto-switch timer
         }
 
         function prevSlide() {
-            stopAutoSwitch(); // Stop the auto-switch timer
+            resetAutoSwitch(); // Reset the auto-switch timer
             showSlide(currentIndex - 1); // Move to the previous slide
-            startAutoSwitch(); // Restart the auto-switch timer
         }
 
         // Start auto-switching slides
@@ -79,23 +93,11 @@
             startAutoSwitch(); // Start a new timer
         }
 
-        // Add event listeners to toggle auto-rotate and scaling on hover
-        const modelViewers = document.querySelectorAll('model-viewer');
-        modelViewers.forEach(modelViewer => {
-            modelViewer.addEventListener('mouseenter', () => {
-                modelViewer.setAttribute('auto-rotate', ''); // Enable auto-rotate
-                modelViewer.style.transform = 'scale(1.1)'; // Enlarge the model
-            });
-            modelViewer.addEventListener('mouseleave', () => {
-                modelViewer.removeAttribute('auto-rotate'); // Disable auto-rotate
-                modelViewer.style.transform = 'scale(1)'; // Reset to original size
-            });
-        });
-
         // Add event listeners to stop and resume auto-switching on hover
         items.forEach(item => {
-            item.addEventListener('mouseenter', stopAutoSwitch); // Stop when mouse enters
-            item.addEventListener('mouseleave', startAutoSwitch); // Resume when mouse leaves
+            const image = item.querySelector('.carousel-image');
+            image.addEventListener('mouseenter', stopAutoSwitch); // Stop when mouse enters
+            image.addEventListener('mouseleave', startAutoSwitch); // Resume when mouse leaves
         });
 
         // Start the carousel
