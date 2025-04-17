@@ -6,6 +6,7 @@
     <meta name="description" content="3D Model Projects - Personal Website">
     <title>My 3D Models</title>
     <link rel="stylesheet" href="styles.proyect.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
@@ -22,27 +23,83 @@
     <main>
         <section>
             <h2>Featured 3D Models</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>3D Model 1</h3>
-                    <iframe src="model1-viewer.html" frameborder="0" class="model-viewer"></iframe>
-                    <p>A brief description of the 3D model goes here.</p>
-                </div>
-                <div class="project-card">
-                    <h3>3D Model 2</h3>
-                    <iframe src="model2-viewer.html" frameborder="0" class="model-viewer"></iframe>
-                    <p>A brief description of the 3D model goes here.</p>
-                </div>
-                <div class="project-card">
-                    <h3>3D Model 3</h3>
-                    <iframe src="model3-viewer.html" frameborder="0" class="model-viewer"></iframe>
-                    <p>A brief description of the 3D model goes here.</p>
-                </div>
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <h3>Machine</h3>
+                        <model-viewer src="model/test1.glb" alt="3D model of a machine" auto-rotate camera-controls style="width: 100%; height: 300px; background-color: #f0f0f0;"></model-viewer>
+                        <p>A brief description of the 3D model goes here.</p>
+                    </div>
+                
             </div>
         </section>
     </main>
     <footer>
         <p>&copy; 2025 CLMatt. All rights reserved.</p>
     </footer>
+    <script>
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.carousel-item');
+        const totalItems = items.length;
+        let autoSwitch; // Variable to store the interval
+
+        function showSlide(index) {
+            const carouselInner = document.querySelector('.carousel-inner');
+            currentIndex = (index + totalItems) % totalItems; // Ensure the index wraps around
+            carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function nextSlide() {
+            stopAutoSwitch(); // Stop the auto-switch timer
+            showSlide(currentIndex + 1); // Move to the next slide
+            startAutoSwitch(); // Restart the auto-switch timer
+        }
+
+        function prevSlide() {
+            stopAutoSwitch(); // Stop the auto-switch timer
+            showSlide(currentIndex - 1); // Move to the previous slide
+            startAutoSwitch(); // Restart the auto-switch timer
+        }
+
+        // Start auto-switching slides
+        function startAutoSwitch() {
+            autoSwitch = setInterval(() => {
+                showSlide(currentIndex + 1);
+            }, 8000); // Auto-switch every 8 seconds
+        }
+
+        // Stop auto-switching slides
+        function stopAutoSwitch() {
+            clearInterval(autoSwitch);
+        }
+
+        // Reset the auto-switch timer
+        function resetAutoSwitch() {
+            stopAutoSwitch(); // Stop the current timer
+            startAutoSwitch(); // Start a new timer
+        }
+
+        // Add event listeners to toggle auto-rotate and scaling on hover
+        const modelViewers = document.querySelectorAll('model-viewer');
+        modelViewers.forEach(modelViewer => {
+            modelViewer.addEventListener('mouseenter', () => {
+                modelViewer.setAttribute('auto-rotate', ''); // Enable auto-rotate
+                modelViewer.style.transform = 'scale(1.1)'; // Enlarge the model
+            });
+            modelViewer.addEventListener('mouseleave', () => {
+                modelViewer.removeAttribute('auto-rotate'); // Disable auto-rotate
+                modelViewer.style.transform = 'scale(1)'; // Reset to original size
+            });
+        });
+
+        // Add event listeners to stop and resume auto-switching on hover
+        items.forEach(item => {
+            item.addEventListener('mouseenter', stopAutoSwitch); // Stop when mouse enters
+            item.addEventListener('mouseleave', startAutoSwitch); // Resume when mouse leaves
+        });
+
+        // Start the carousel
+        startAutoSwitch();
+    </script>
 </body>
 </html>
